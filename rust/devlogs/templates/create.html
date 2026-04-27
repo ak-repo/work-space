@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}New Log - DevLogs{% endblock %}
+
+{% block content %}
+<h2>Create New Log</h2>
+
+<form method="post" action="/logs">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="content">Content</label>
+        <textarea id="content" name="content" required></textarea>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create Log</button>
+        <a href="/" class="btn">Cancel</a>
+    </div>
+</form>
+{% endblock %}

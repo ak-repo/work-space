@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}{{ log.title }} - DevLogs{% endblock %}
+
+{% block content %}
+<h2>{{ log.title }}</h2>
+
+<div class="log-date">Created: {{ log.created_at }}</div>
+
+<div style="margin: 1rem 0;">
+    <pre style="white-space: pre-wrap;">{{ log.content }}</pre>
+</div>
+
+{% if log.summary.is_some() %}
+<div class="summary-section">
+    <h3>AI Summary</h3>
+    <p>{{ log.summary.as_ref().unwrap() }}</p>
+</div>
+{% endif %}
+
+<div class="actions">
+    {% if log.summary.is_none() %}
+    <form method="post" action="/logs/{{ log.id }}/summarize" style="display: inline;">
+        <button type="submit" class="btn btn-success">Generate Summary</button>
+    </form>
+    {% endif %}
+    
+    <form method="post" action="/logs/{{ log.id }}/delete" style="display: inline;">
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+    
+    <a href="/" class="btn">Back to Home</a>
+</div>
+{% endblock %}

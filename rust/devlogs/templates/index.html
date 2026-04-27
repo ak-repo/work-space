@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Your Development Logs</h2>
+
+{% if logs.is_empty() %}
+    <p>No logs yet. <a href="/logs/new">Create your first log</a>.</p>
+{% else %}
+    <ul class="log-list">
+        {% for log in logs %}
+        <li class="log-item">
+            <h3 class="log-title"><a href="/logs/{{ log.id }}">{{ log.title }}</a></h3>
+            <div class="log-date">{{ log.created_at }}</div>
+            {% if log.summary.is_some() %}
+                <div class="log-summary">{{ log.summary.as_ref().unwrap() }}</div>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<a href="/logs/new" class="btn btn-primary">Create New Log</a>
+{% endblock %}
