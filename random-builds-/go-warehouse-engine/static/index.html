@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warehouse Engine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'pending': '#fbbf24',
+                        'confirmed': '#10b981',
+                        'released': '#9ca3af'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .countdown-running {
+            animation: pulse 1s infinite;
+        }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Warehouse Engine</h1>
+            <div class="flex items-center justify-between mt-2">
+                <div class="flex items-center space-x-4">
+                    <span id="last-updated" class="text-sm text-gray-600">Last updated: Never</span>
+                    <button id="refresh-toggle" class="px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600">Auto-refresh: ON</button>
+                </div>
+                <div class="flex items-center">
+                    <span class="mr-2 text-sm text-gray-600">Status:</span>
+                    <span id="connection-status" class="px-2 py-1 text-xs bg-green-500 text-white rounded">Connected</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Order Creation Form -->
+        <section class="mb-12 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4">Create New Order</h2>
+            <form id="order-form" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label for="order-id" class="block text-sm font-medium text-gray-700 mb-1">Order ID</label>
+                    <div class="flex">
+                        <input type="text" id="order-id" class="flex-1 border border-gray-300 rounded-l px-3 py-2 text-sm" placeholder="Enter or generate">
+                        <button type="button" id="generate-order-id" class="bg-gray-200 hover:bg-gray-300 px-3 rounded-r text-sm">Generate</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <label for="product-select" class="block text-sm font-medium text-gray-700 mb-1">Product</label>
+                    <select id="product-select" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" required>
+                        <option value="">Select a product</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="quantity" class="block text-sm font-medium text-gray-700 mb-1">Quantity</label>
+                    <input type="number" id="quantity" min="1" class="w-full border border-gray-300 rounded px-3 py-2 text-sm" placeholder="Enter quantity" required>
+                </div>
+                
+                <div class="flex items-end">
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded text-sm font-medium">
+                        Reserve Stock
+                    </button>
+                </div>
+            </form>
+            <div id="order-result" class="mt-4 hidden"></div>
+        </section>
+
+        <!-- Products Overview -->
+        <section class="mb-12 bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4">Products Overview</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">SKU</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Stock</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reserved</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Available</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reorder At</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody id="products-tbody" class="bg-white divide-y divide-gray-200">
+                        <!-- Products will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Live Reservations -->
+        <section class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-semibold mb-4">Live Reservations</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Reservation ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Quantity</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Expires In</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="reservations-tbody" class="bg-white divide-y divide-gray-200">
+                        <!-- Reservations will be populated here -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // State management
+        let products = [];
+        let reservations = [];
+        let autoRefresh = true;
+        let refreshInterval;
+
+        // DOM Elements
+        const orderForm = document.getElementById('order-form');
+        const productSelect = document.getElementById('product-select');
+        const orderIdInput = document.getElementById('order-id');
+        const generateOrderIdBtn = document.getElementById('generate-order-id');
+        const orderResult = document.getElementById('order-result');
+        const productsTbody = document.getElementById('products-tbody');
+        const reservationsTbody = document.getElementById('reservations-tbody');
+        const lastUpdatedSpan = document.getElementById('last-updated');
+        const refreshToggleBtn = document.getElementById('refresh-toggle');
+        const connectionStatus = document.getElementById('connection-status');
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Generate initial order ID
+            orderIdInput.value = crypto.randomUUID();
+            
+            // Set up event listeners
+            generateOrderIdBtn.addEventListener('click', () => {
+                orderIdInput.value = crypto.randomUUID();
+            });
+            
+            orderForm.addEventListener('submit', handleReserve);
+            refreshToggleBtn.addEventListener('click', toggleAutoRefresh);
+            
+            // Initial data load
+            await refreshData();
+            
+            // Set up auto-refresh
+            refreshInterval = setInterval(refreshData, 5000);
+        });
+
+        // Toggle auto-refresh
+        function toggleAutoRefresh() {
+            autoRefresh = !autoRefresh;
+            refreshToggleBtn.textContent = `Auto-refresh: ${autoRefresh ? 'ON' : 'OFF'}`;
+            refreshToggleBtn.className = autoRefresh 
+                ? 'px-3 py-1 text-xs bg-blue-500 text-white rounded hover:bg-blue-600'
+                : 'px-3 py-1 text-xs bg-gray-500 text-white rounded hover:bg-gray-600';
+                
+            if (autoRefresh) {
+                refreshInterval = setInterval(refreshData, 5000);
+            } else {
+                clearInterval(refreshInterval);
+            }
+        }
+
+        // Refresh all data
+        async function refreshData() {
+            try {
+                // Update connection status
+                connectionStatus.className = 'px-2 py-1 text-xs bg-green-500 text-white rounded';
+                connectionStatus.textContent = 'Connected';
+                
+                // Fetch products and reservations in parallel
+                const [productsResponse, reservationsResponse] = await Promise.all([
+                    fetch('/api/products'),
+                    fetch('/api/reservations')
+                ]);
+                
+                if (!productsResponse.ok || !reservationsResponse.ok) {
+                    throw new Error('Failed to fetch data');
+                }
+                
+                products = await productsResponse.json();
+                reservations = await reservationsResponse.json();
+                
+                // Update UI
+                renderProducts();
+                renderReservations();
+                
+                // Update last updated time
+                lastUpdatedSpan.textContent = `Last updated: ${new Date().toLocaleTimeString()}`;
+            } catch (error) {
+                console.error('Error refreshing data:', error);
+                connectionStatus.className = 'px-2 py-1 text-xs bg-red-500 text-white rounded';
+                connectionStatus.textContent = 'Connection Error';
+                
+                // Show error in products/reservations if they're empty
+                if (productsTbody.children.length === 0) {
+                    productsTbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-red-500">Failed to load products</td></tr>';
+                }
+                
+                if (reservationsTbody.children.length === 0) {
+                    reservationsTbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-red-500">Failed to load reservations</td></tr>';
+                }
+            }
+        }
+
+        // Render products table
+        function renderProducts() {
+            if (products.length === 0) {
+                productsTbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">No products found</td></tr>';
+                productSelect.innerHTML = '<option value="">No products available</option>';
+                return;
+            }
+            
+            // Update products table
+            productsTbody.innerHTML = products.map(product => {
+                console.log(product)
+                const available = product.total_stock - product.reserved;
+                const statusClass = available <= product.reorder_at 
+                    ? (available <= 0 ? 'bg-red-100 text-red-800' : 'bg-yellow-100 text-yellow-800')
+                    : 'bg-green-100 text-green-800';
+                    
+                return `
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product?.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${product?.sku}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product?.total_stock}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product?.reserved}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${available}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product?.reorder_at}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">
+                                ${available <= 0 ? 'Out of Stock' : available <= product.reorder_at ? 'Low Stock' : 'In Stock'}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+            
+            // Update product dropdown
+            productSelect.innerHTML = '<option value="">Select a product</option>' + 
+                products.map(product => {
+                    const available = product.total_stock - product.reserved;
+                    return `<option value="${product.id}" data-available="${available}">${product.name} (${product.sku}) - ${available} available</option>`;
+                }).join('');
+        }
+
+        // Render reservations table
+        function renderReservations() {
+            if (reservations.length === 0) {
+                reservationsTbody.innerHTML = '<tr><td colspan="7" class="px-6 py-4 text-center text-gray-500">No reservations found</td></tr>';
+                return;
+            }
+            
+            reservationsTbody.innerHTML = reservations.map(reservation => {
+                const product = products.find(p => p.id === reservation.product_id) || {name: 'Unknown'};
+                const expiresIn = calculateExpiresIn(reservation.expires_at);
+                const isPending = reservation.status === 'pending';
+                const isExpired = new Date() > new Date(reservation.expires_at);
+                
+                // Determine status badge class
+                let statusClass = '';
+                switch (reservation.status) {
+                    case 'pending':
+                        statusClass = 'bg-pending text-gray-900';
+                        break;
+                    case 'confirmed':
+                        statusClass = 'bg-confirmed text-white';
+                        break;
+                    case 'released':
+                        statusClass = 'bg-released text-gray-900';
+                        break;
+                }
+                
+                // Determine if actions are available
+                const canAct = isPending && !isExpired;
+                
+                return `
+                    <tr id="reservation-${reservation.id}">
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${reservation.id.substring(0, 8)}...</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${product.name}</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${reservation.order_id.substring(0, 8)}...</td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">${reservation.quantity}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusClass}">
+                                ${reservation.status}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900" data-expires="${reservation.expires_at}">
+                            ${isPending ? `<span class="countdown-running">${expiresIn}</span>` : 'N/A'}
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                            ${canAct ? `
+                                <button onclick="confirmReservation('${reservation.id}')" class="text-indigo-600 hover:text-indigo-900 mr-2">Confirm</button>
+                                <button onclick="cancelReservation('${reservation.id}')" class="text-red-600 hover:text-red-900">Cancel</button>
+                            ` : `
+                                <span class="text-gray-400">-</span>
+                            `}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Calculate time until expiration
+        function calculateExpiresIn(expiresAt) {
+            const now = new Date();
+            const expires = new Date(expiresAt);
+            const diffMs = expires - now;
+            
+            if (diffMs <= 0) {
+                return 'Expired';
+            }
+            
+            const diffSecs = Math.floor(diffMs / 1000);
+            const diffMins = Math.floor(diffSecs / 60);
+            const diffHours = Math.floor(diffMins / 60);
+            
+            if (diffHours > 0) {
+                return `${diffHours}h ${diffMins % 60}m`;
+            } else if (diffMins > 0) {
+                return `${diffMins}m ${diffSecs % 60}s`;
+            } else {
+                return `${diffSecs}s`;
+            }
+        }
+
+        // Update countdown timers
+        function updateCountdowns() {
+            const countdownElements = document.querySelectorAll('[data-expires]');
+            countdownElements.forEach(element => {
+                const expiresAt = element.getAttribute('data-expires');
+                if (expiresAt) {
+                    element.innerHTML = `<span class="countdown-running">${calculateExpiresIn(expiresAt)}</span>`;
+                }
+            });
+        }
+
+        // Set up countdown updater
+        setInterval(updateCountdowns, 1000);
+
+        // Handle reserve form submission
+        async function handleReserve(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(orderForm);
+            const productId = productSelect.value;
+            const orderId = orderIdInput.value;
+            const quantity = parseInt(document.getElementById('quantity').value);
+            
+            // Validate inputs
+            if (!productId || !orderId || !quantity || quantity < 1) {
+                showOrderResult('Please fill all fields with valid values', 'error');
+                return;
+            }
+            
+            // Get available stock for selected product
+            const productOption = productSelect.options[productSelect.selectedIndex];
+            const availableStock = parseInt(productOption.getAttribute('data-available'));
+            
+            if (quantity > availableStock) {
+                showOrderResult(`Requested quantity (${quantity}) exceeds available stock (${availableStock})`, 'error');
+                return;
+            }
+            
+            // Prepare request data
+            const requestData = {
+                product_id: productId,
+                order_id: orderId,
+                quantity: quantity
+            };
+            
+            try {
+                // Make API request
+                const response = await fetch('/reserve', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(requestData)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    showOrderResult(`Reservation created successfully! ID: ${result.id.substring(0, 8)}...`, 'success');
+                    orderForm.reset();
+                    orderIdInput.value = crypto.randomUUID();
+                    
+                    // Refresh data to show new reservation
+                    await refreshData();
+                } else {
+                    showOrderResult(`Error: ${result.error}`, 'error');
+                }
+            } catch (error) {
+                console.error('Error creating reservation:', error);
+                showOrderResult(`Network error: ${error.message}`, 'error');
+            }
+        }
+
+        // Show order result message
+        function showOrderResult(message, type) {
+            orderResult.className = `p-4 rounded ${type === 'success' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`;
+            orderResult.textContent = message;
+            orderResult.classList.remove('hidden');
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                orderResult.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Confirm a reservation
+        async function confirmReservation(reservationId) {
+            if (!confirm('Are you sure you want to confirm this reservation?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/confirm', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({reservation_id: reservationId})
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Refresh data to show updated status
+                    await refreshData();
+                } else {
+                    alert(`Error confirming reservation: ${result.error}`);
+                }
+            } catch (error) {
+                console.error('Error confirming reservation:', error);
+                alert(`Network error: ${error.message}`);
+            }
+        }
+
+        // Cancel a reservation
+        async function cancelReservation(reservationId) {
+            if (!confirm('Are you sure you want to cancel this reservation?')) {
+                return;
+            }
+            
+            try {
+                const response = await fetch('/cancel', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({reservation_id: reservationId})
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    // Refresh data to show updated status
+                    await refreshData();
+                } else {
+                    alert(`Error canceling reservation: ${result.error}`);
+                }
+            } catch (error) {
+                console.error('Error canceling reservation:', error);
+                alert(`Network error: ${error.message}`);
+            }
+        }
+    </script>
+</body>
+</html>
