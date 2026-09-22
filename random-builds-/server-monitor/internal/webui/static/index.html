@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Server Monitor</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0f18;
+      --panel: #111827;
+      --panel-2: #0d1420;
+      --border: #263244;
+      --text: #eef4ff;
+      --muted: #8fa0b8;
+      --accent: #77e6b6;
+      --warn: #f5c76b;
+      --bad: #ff7b89;
+      --blue: #74b9ff;
+      --shadow: 0 20px 60px rgba(0,0,0,.28);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 0%, rgba(116,185,255,.11), transparent 26rem),
+        radial-gradient(circle at 90% 10%, rgba(119,230,182,.08), transparent 25rem),
+        var(--bg);
+    }
+    button { font: inherit; }
+    .shell { max-width: 1480px; margin: 0 auto; padding: 28px; }
+    .topbar { display:flex; align-items:flex-start; justify-content:space-between; gap:20px; margin-bottom:22px; }
+    .eyebrow { color:var(--accent); font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { margin:7px 0 3px; font-size:30px; letter-spacing:-.04em; }
+    .subtitle { color:var(--muted); font-size:14px; }
+    .live-pill { display:flex; align-items:center; gap:9px; border:1px solid var(--border); background:rgba(17,24,39,.76); padding:10px 13px; border-radius:999px; color:var(--muted); font-size:13px; }
+    .dot { width:9px; height:9px; border-radius:999px; background:var(--muted); box-shadow:0 0 0 4px rgba(143,160,184,.08); }
+    .dot.healthy { background:var(--accent); box-shadow:0 0 14px rgba(119,230,182,.7); }
+    .dot.degraded,.dot.warning { background:var(--warn); box-shadow:0 0 14px rgba(245,199,107,.55); }
+    .dot.unhealthy { background:var(--bad); box-shadow:0 0 14px rgba(255,123,137,.55); }
+    .grid { display:grid; gap:16px; }
+    .summary { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .main { grid-template-columns:minmax(0,1.45fr) minmax(340px,.75fr); margin-top:16px; }
+    .card { border:1px solid var(--border); border-radius:18px; background:linear-gradient(180deg,rgba(17,24,39,.94),rgba(13,20,32,.94)); box-shadow:var(--shadow); overflow:hidden; }
+    .metric { padding:18px; min-height:170px; display:flex; flex-direction:column; justify-content:space-between; }
+    .metric-head { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+    .metric-title { color:var(--muted); font-size:12px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    .metric-value { margin-top:10px; font-size:38px; font-weight:760; letter-spacing:-.05em; }
+    .metric-detail { color:var(--muted); font-size:12px; margin-top:3px; }
+    .bar { height:7px; background:#1b2637; overflow:hidden; border-radius:999px; margin-top:16px; }
+    .bar > div { height:100%; width:0; background:linear-gradient(90deg,var(--blue),var(--accent)); border-radius:inherit; transition:width .35s ease; }
+    .section { padding:20px; }
+    .section-title { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:16px; }
+    .section-title h2 { font-size:16px; margin:0; letter-spacing:-.02em; }
+    .section-title span { color:var(--muted); font-size:12px; }
+    .chart-wrap { height:260px; border:1px solid rgba(38,50,68,.75); border-radius:14px; background:#0a111c; padding:12px; }
+    canvas { width:100%; height:100%; display:block; }
+    .two { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:16px; }
+    .kv { display:grid; grid-template-columns:1fr auto; gap:0; }
+    .kv div { padding:11px 0; border-bottom:1px solid rgba(38,50,68,.65); font-size:13px; }
+    .kv div:nth-last-child(-n+2){ border-bottom:0; }
+    .kv .k { color:var(--muted); }
+    .kv .v { text-align:right; font-variant-numeric:tabular-nums; font-weight:650; }
+    .db-status { display:flex; align-items:center; justify-content:space-between; border:1px solid rgba(38,50,68,.8); background:#0a111c; border-radius:14px; padding:15px; margin-bottom:14px; }
+    .db-status strong { display:block; font-size:15px; }
+    .db-status small { color:var(--muted); }
+    .badge { border:1px solid var(--border); border-radius:999px; padding:6px 9px; color:var(--muted); font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; }
+    .badge.healthy { color:var(--accent); border-color:rgba(119,230,182,.35); background:rgba(119,230,182,.08); }
+    .badge.unhealthy { color:var(--bad); border-color:rgba(255,123,137,.35); background:rgba(255,123,137,.08); }
+    .badge.not_configured { color:var(--muted); }
+    .footer { margin:18px 2px 0; display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; color:var(--muted); font-size:12px; }
+    .error { display:none; color:var(--bad); margin-bottom:16px; border:1px solid rgba(255,123,137,.3); background:rgba(255,123,137,.07); border-radius:12px; padding:11px 13px; font-size:13px; }
+    .error.show { display:block; }
+    .mono { font-family: ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; }
+    @media (max-width:1050px){ .summary{grid-template-columns:1fr 1fr}.main{grid-template-columns:1fr}.two{grid-template-columns:1fr 1fr} }
+    @media (max-width:650px){ .shell{padding:16px}.topbar{align-items:flex-start}.summary,.two{grid-template-columns:1fr}.metric{min-height:145px} h1{font-size:26px}.metric-value{font-size:34px} }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <div class="eyebrow">Observability Lab</div>
+        <h1>Server Monitor</h1>
+        <div class="subtitle" id="host-subtitle">Waiting for first snapshot…</div>
+      </div>
+      <div class="live-pill"><span id="overall-dot" class="dot"></span><span id="overall-text">CONNECTING</span></div>
+    </header>
+
+    <div id="error" class="error"></div>
+
+    <section class="grid summary">
+      <article class="card metric">
+        <div>
+          <div class="metric-head"><span class="metric-title">CPU</span><span id="cpu-cores" class="metric-detail">—</span></div>
+          <div class="metric-value" id="cpu">—</div>
+          <div class="metric-detail" id="load">Load —</div>
+        </div>
+        <div class="bar"><div id="cpu-bar"></div></div>
+      </article>
+      <article class="card metric">
+        <div>
+          <div class="metric-title">Memory</div>
+          <div class="metric-value" id="memory">—</div>
+          <div class="metric-detail" id="memory-detail">—</div>
+        </div>
+        <div class="bar"><div id="memory-bar"></div></div>
+      </article>
+      <article class="card metric">
+        <div>
+          <div class="metric-title">Disk /</div>
+          <div class="metric-value" id="disk">—</div>
+          <div class="metric-detail" id="disk-detail">—</div>
+        </div>
+        <div class="bar"><div id="disk-bar"></div></div>
+      </article>
+      <article class="card metric">
+        <div>
+          <div class="metric-title">Database latency</div>
+          <div class="metric-value" id="db-latency">—</div>
+          <div class="metric-detail" id="db-latency-detail">PostgreSQL</div>
+        </div>
+        <div class="bar"><div id="db-bar"></div></div>
+      </article>
+    </section>
+
+    <section class="grid main">
+      <div>
+        <article class="card section">
+          <div class="section-title"><h2>Live resource history</h2><span>last 60 samples · browser memory only</span></div>
+          <div class="chart-wrap"><canvas id="chart"></canvas></div>
+        </article>
+
+        <div class="two">
+          <article class="card section">
+            <div class="section-title"><h2>Host</h2><span>machine state</span></div>
+            <div class="kv">
+              <div class="k">Hostname</div><div class="v mono" id="hostname">—</div>
+              <div class="k">OS / platform</div><div class="v" id="platform">—</div>
+              <div class="k">Kernel</div><div class="v mono" id="kernel">—</div>
+              <div class="k">Uptime</div><div class="v" id="uptime">—</div>
+              <div class="k">Load 1 / 5 / 15</div><div class="v" id="loads">—</div>
+              <div class="k">Network RX</div><div class="v" id="rx">—</div>
+              <div class="k">Network TX</div><div class="v" id="tx">—</div>
+            </div>
+          </article>
+
+          <article class="card section">
+            <div class="section-title"><h2>Go runtime</h2><span>application process</span></div>
+            <div class="kv">
+              <div class="k">Go version</div><div class="v mono" id="go-version">—</div>
+              <div class="k">Goroutines</div><div class="v" id="goroutines">—</div>
+              <div class="k">Heap allocated</div><div class="v" id="heap-alloc">—</div>
+              <div class="k">Heap in use</div><div class="v" id="heap-inuse">—</div>
+              <div class="k">Runtime sys memory</div><div class="v" id="go-sys">—</div>
+              <div class="k">GC count</div><div class="v" id="gc-count">—</div>
+              <div class="k">Last GC pause</div><div class="v" id="gc-pause">—</div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <aside class="card section">
+        <div class="section-title"><h2>PostgreSQL</h2><span>dependency health</span></div>
+        <div class="db-status">
+          <div><strong>Database connection</strong><small id="db-checked">Waiting…</small></div>
+          <span class="badge" id="db-status">UNKNOWN</span>
+        </div>
+        <div class="kv">
+          <div class="k">Ping latency</div><div class="v" id="db-ping">—</div>
+          <div class="k">Pool max</div><div class="v" id="db-max">—</div>
+          <div class="k">Open</div><div class="v" id="db-open">—</div>
+          <div class="k">In use</div><div class="v" id="db-inuse">—</div>
+          <div class="k">Idle</div><div class="v" id="db-idle">—</div>
+          <div class="k">Wait count</div><div class="v" id="db-wait">—</div>
+          <div class="k">Total wait</div><div class="v" id="db-wait-duration">—</div>
+          <div class="k">Idle closed</div><div class="v" id="db-idle-closed">—</div>
+          <div class="k">Lifetime closed</div><div class="v" id="db-life-closed">—</div>
+        </div>
+        <div id="db-error" class="error" style="margin:16px 0 0"></div>
+      </aside>
+    </section>
+
+    <footer class="footer">
+      <span>Polling <span class="mono">/api/snapshot</span> every 2 seconds</span>
+      <span id="last-update">No data yet</span>
+    </footer>
+  </main>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const history = { cpu: [], memory: [], disk: [] };
+    const maxPoints = 60;
+
+    const fmtBytes = n => {
+      if (!Number.isFinite(n)) return '—';
+      const units = ['B','KB','MB','GB','TB'];
+      let v = n, i = 0;
+      while (v >= 1024 && i < units.length - 1) { v /= 1024; i++; }
+      return `${v.toFixed(i < 2 ? 0 : 1)} ${units[i]}`;
+    };
+    const pct = n => Number.isFinite(n) ? `${n.toFixed(1)}%` : '—';
+    const fmtDuration = sec => {
+      sec = Math.max(0, Number(sec) || 0);
+      const d = Math.floor(sec / 86400); sec %= 86400;
+      const h = Math.floor(sec / 3600); sec %= 3600;
+      const m = Math.floor(sec / 60);
+      return `${d}d ${h}h ${m}m`;
+    };
+    const fmtTime = iso => iso ? new Date(iso).toLocaleTimeString() : '—';
+
+    function setBar(id, value) { $(id).style.width = `${Math.max(0, Math.min(100, value || 0))}%`; }
+    function push(arr, value) { arr.push(Number(value) || 0); if (arr.length > maxPoints) arr.shift(); }
+
+    function render(snapshot) {
+      const s = snapshot.system;
+      const d = snapshot.database;
+      $('error').classList.remove('show');
+
+      $('overall-text').textContent = snapshot.overall_status.toUpperCase();
+      $('overall-dot').className = `dot ${snapshot.overall_status}`;
+      $('host-subtitle').textContent = `${s.hostname || 'unknown host'} · ${s.platform || s.os || 'unknown OS'} · refreshed ${fmtTime(s.collected_at)}`;
+
+      $('cpu').textContent = pct(s.cpu.usage_percent);
+      $('cpu-cores').textContent = `${s.cpu.logical_cores || 0} logical cores`;
+      $('load').textContent = `Load ${s.load.load_1.toFixed(2)}`;
+      setBar('cpu-bar', s.cpu.usage_percent);
+
+      $('memory').textContent = pct(s.memory.usage_percent);
+      $('memory-detail').textContent = `${fmtBytes(s.memory.used_bytes)} / ${fmtBytes(s.memory.total_bytes)}`;
+      setBar('memory-bar', s.memory.usage_percent);
+
+      $('disk').textContent = pct(s.disk.usage_percent);
+      $('disk-detail').textContent = `${fmtBytes(s.disk.used_bytes)} / ${fmtBytes(s.disk.total_bytes)}`;
+      setBar('disk-bar', s.disk.usage_percent);
+
+      $('hostname').textContent = s.hostname || '—';
+      $('platform').textContent = `${s.os || '—'} / ${s.platform || '—'}`;
+      $('kernel').textContent = s.kernel || '—';
+      $('uptime').textContent = fmtDuration(s.uptime_seconds);
+      $('loads').textContent = `${s.load.load_1.toFixed(2)} / ${s.load.load_5.toFixed(2)} / ${s.load.load_15.toFixed(2)}`;
+      $('rx').textContent = fmtBytes(s.network.bytes_recv);
+      $('tx').textContent = fmtBytes(s.network.bytes_sent);
+
+      $('go-version').textContent = s.go.version || '—';
+      $('goroutines').textContent = s.go.goroutines.toLocaleString();
+      $('heap-alloc').textContent = fmtBytes(s.go.heap_alloc_bytes);
+      $('heap-inuse').textContent = fmtBytes(s.go.heap_in_use_bytes);
+      $('go-sys').textContent = fmtBytes(s.go.sys_bytes);
+      $('gc-count').textContent = s.go.gc_count.toLocaleString();
+      $('gc-pause').textContent = `${(s.go.last_gc_pause_ns / 1e6).toFixed(3)} ms`;
+
+      $('db-status').textContent = d.status.replaceAll('_',' ');
+      $('db-status').className = `badge ${d.status}`;
+      $('db-checked').textContent = `checked ${fmtTime(d.checked_at)}`;
+      $('db-ping').textContent = d.configured ? `${d.latency_ms.toFixed(2)} ms` : '—';
+      $('db-max').textContent = d.configured ? d.max_open_connections : '—';
+      $('db-open').textContent = d.configured ? d.open_connections : '—';
+      $('db-inuse').textContent = d.configured ? d.in_use : '—';
+      $('db-idle').textContent = d.configured ? d.idle : '—';
+      $('db-wait').textContent = d.configured ? d.wait_count.toLocaleString() : '—';
+      $('db-wait-duration').textContent = d.configured ? `${d.wait_duration_ms.toFixed(2)} ms` : '—';
+      $('db-idle-closed').textContent = d.configured ? d.max_idle_closed.toLocaleString() : '—';
+      $('db-life-closed').textContent = d.configured ? d.max_lifetime_closed.toLocaleString() : '—';
+      $('db-latency').textContent = d.configured ? `${d.latency_ms.toFixed(1)}` : 'N/A';
+      $('db-latency-detail').textContent = d.configured ? `milliseconds · ${d.status}` : 'DATABASE_URL not set';
+      setBar('db-bar', d.configured ? Math.min(100, d.latency_ms) : 0);
+
+      if (d.error) {
+        $('db-error').textContent = d.error;
+        $('db-error').classList.add('show');
+      } else {
+        $('db-error').classList.remove('show');
+      }
+
+      push(history.cpu, s.cpu.usage_percent);
+      push(history.memory, s.memory.usage_percent);
+      push(history.disk, s.disk.usage_percent);
+      drawChart();
+      $('last-update').textContent = `Last API update ${fmtTime(snapshot.server_time)}`;
+    }
+
+    function drawChart() {
+      const canvas = $('chart');
+      const rect = canvas.getBoundingClientRect();
+      const ratio = window.devicePixelRatio || 1;
+      const w = Math.max(320, rect.width), h = Math.max(180, rect.height);
+      canvas.width = w * ratio; canvas.height = h * ratio;
+      const ctx = canvas.getContext('2d'); ctx.scale(ratio, ratio);
+      ctx.clearRect(0, 0, w, h);
+
+      ctx.strokeStyle = '#213047'; ctx.lineWidth = 1;
+      ctx.fillStyle = '#7890ad'; ctx.font = '11px system-ui';
+      [0,25,50,75,100].forEach(v => {
+        const y = h - 20 - (v/100)*(h-34);
+        ctx.beginPath(); ctx.moveTo(34,y); ctx.lineTo(w-8,y); ctx.stroke();
+        ctx.fillText(String(v), 5, y+4);
+      });
+
+      const lines = [
+        [history.cpu, '#74b9ff', 'CPU'],
+        [history.memory, '#77e6b6', 'Memory'],
+        [history.disk, '#f5c76b', 'Disk']
+      ];
+      lines.forEach(([values, color]) => {
+        if (!values.length) return;
+        ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
+        values.forEach((v,i) => {
+          const x = 36 + (values.length === 1 ? 0 : i/(values.length-1))*(w-48);
+          const y = h - 20 - Math.max(0,Math.min(100,v))/100*(h-34);
+          i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+        });
+        ctx.stroke();
+      });
+
+      let x = 42;
+      lines.forEach(([,color,label]) => {
+        ctx.fillStyle = color; ctx.fillRect(x,7,8,8);
+        ctx.fillStyle = '#aab9cc'; ctx.fillText(label, x+13, 15); x += label.length*8+48;
+      });
+    }
+
+    async function poll() {
+      try {
+        const response = await fetch('/api/snapshot', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        render(await response.json());
+      } catch (err) {
+        $('error').textContent = `Dashboard cannot reach monitoring API: ${err.message}`;
+        $('error').classList.add('show');
+        $('overall-text').textContent = 'DISCONNECTED';
+        $('overall-dot').className = 'dot unhealthy';
+      }
+    }
+
+    window.addEventListener('resize', drawChart);
+    poll();
+    setInterval(poll, 2000);
+  </script>
+</body>
+</html>
