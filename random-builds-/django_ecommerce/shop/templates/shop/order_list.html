@@ -1,0 +1,21 @@
+{% extends 'shop/base.html' %}
+{% block title %}Orders | Simple Shop{% endblock %}
+{% block content %}
+<h1>Orders</h1>
+<div class="stack">
+    {% for order in orders %}
+        <a class="card order-card" href="{% url 'shop:order_detail' order.id %}">
+            <div>
+                <h3>Order #{{ order.id }}</h3>
+                <p class="muted">{{ order.created_at|date:'M d, Y H:i' }}</p>
+            </div>
+            <div class="text-right">
+                <strong>${{ order.total_amount }}</strong>
+                <p><span class="badge">{{ order.get_status_display }}</span> <span class="badge">{{ order.get_payment_status_display }}</span></p>
+            </div>
+        </a>
+    {% empty %}
+        <div class="card empty-state">No orders yet.</div>
+    {% endfor %}
+</div>
+{% endblock %}

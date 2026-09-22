@@ -1,0 +1,37 @@
+{% extends 'shop/base.html' %}
+{% block title %}Order #{{ order.id }} | Simple Shop{% endblock %}
+{% block content %}
+<a class="back-link" href="{% url 'shop:order_list' %}">← Back to orders</a>
+<div class="page-heading">
+    <div>
+        <h1>Order #{{ order.id }}</h1>
+        <p class="muted">Placed {{ order.created_at|date:'M d, Y H:i' }}</p>
+    </div>
+    <div>
+        <span class="badge">{{ order.get_status_display }}</span>
+        <span class="badge">{{ order.get_payment_status_display }}</span>
+    </div>
+</div>
+
+<div class="two-column checkout-grid">
+    <section class="card">
+        <h2>Items</h2>
+        {% for item in order.items.all %}
+            <div class="summary-line">
+                <span>{{ item.product_name }} × {{ item.quantity }}</span>
+                <strong>${{ item.line_total }}</strong>
+            </div>
+        {% endfor %}
+        <hr>
+        <div class="summary-line total-line"><span>Total</span><strong>${{ order.total_amount }}</strong></div>
+    </section>
+    <aside class="card">
+        <h2>Shipping</h2>
+        <p><strong>{{ order.shipping_name }}</strong></p>
+        <p>{{ order.shipping_address|linebreaksbr }}</p>
+        {% if order.payment_status != 'PAID' %}
+            <a class="btn primary" href="{% url 'shop:payment' order.id %}">Pay now</a>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}

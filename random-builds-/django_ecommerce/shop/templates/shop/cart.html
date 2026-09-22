@@ -1,0 +1,40 @@
+{% extends 'shop/base.html' %}
+{% block title %}Cart | Simple Shop{% endblock %}
+{% block content %}
+<h1>Your Cart</h1>
+{% if items %}
+    <div class="stack">
+        {% for item in items %}
+            <div class="card row-card">
+                <div class="grow">
+                    <h3><a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a></h3>
+                    <p class="muted">${{ item.product.price }} each · Stock {{ item.product.stock }}</p>
+                </div>
+                <form action="{% url 'shop:cart_update' item.product.id %}" method="post" class="inline-form gap">
+                    {% csrf_token %}
+                    <input class="qty" type="number" name="quantity" min="0" max="{{ item.product.stock }}" value="{{ item.quantity }}">
+                    <button class="btn" type="submit">Update</button>
+                </form>
+                <strong>${{ item.line_total }}</strong>
+                <form action="{% url 'shop:cart_remove' item.product.id %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn danger" type="submit">Remove</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="summary card">
+        <div><span>Total</span><strong>${{ total }}</strong></div>
+        {% if user.is_authenticated %}
+            <a class="btn primary" href="{% url 'shop:checkout' %}">Checkout</a>
+        {% else %}
+            <a class="btn primary" href="{% url 'login' %}?next={% url 'shop:checkout' %}">Login to checkout</a>
+        {% endif %}
+    </div>
+{% else %}
+    <div class="card empty-state">
+        <h2>Your cart is empty</h2>
+        <a class="btn primary" href="{% url 'shop:product_list' %}">Browse products</a>
+    </div>
+{% endif %}
+{% endblock %}

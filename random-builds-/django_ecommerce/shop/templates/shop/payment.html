@@ -1,0 +1,20 @@
+{% extends 'shop/base.html' %}
+{% block title %}Payment | Simple Shop{% endblock %}
+{% block content %}
+<div class="payment-card card">
+    <p class="eyebrow">MOCK PAYMENT</p>
+    <h1>Pay Order #{{ order.id }}</h1>
+    <p class="muted">This demo does not contact a real payment gateway.</p>
+    <div class="payment-total">${{ order.total_amount }}</div>
+
+    {% if order.payment_status == 'PAID' %}
+        <p class="success-text">Payment already completed.</p>
+        <a class="btn primary" href="{% url 'shop:order_detail' order.id %}">View order</a>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            <button class="btn primary wide" type="submit">Pay Now (Mock Success)</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

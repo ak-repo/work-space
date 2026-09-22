@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+{% block title %}Checkout | Simple Shop{% endblock %}
+{% block content %}
+<h1>Checkout</h1>
+<div class="two-column checkout-grid">
+    <section class="card">
+        <h2>Shipping</h2>
+        <form method="post" class="form-stack">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn primary" type="submit">Place order</button>
+        </form>
+    </section>
+    <aside class="card">
+        <h2>Order summary</h2>
+        {% for item in items %}
+            <div class="summary-line">
+                <span>{{ item.product.name }} × {{ item.quantity }}</span>
+                <strong>${{ item.line_total }}</strong>
+            </div>
+        {% endfor %}
+        <hr>
+        <div class="summary-line total-line"><span>Total</span><strong>${{ total }}</strong></div>
+    </aside>
+</div>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'shop/base.html' %}
+{% block title %}{{ product.name }} | Simple Shop{% endblock %}
+{% block content %}
+<div class="two-column">
+    <section class="card">
+        {% if product.image_url %}
+            <img class="detail-image" src="{{ product.image_url }}" alt="{{ product.name }}">
+        {% else %}
+            <div class="detail-placeholder">{{ product.name|slice:':1' }}</div>
+        {% endif %}
+    </section>
+    <section>
+        <a class="back-link" href="{% url 'shop:product_list' %}">← Back to products</a>
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description|linebreaksbr }}</p>
+        <h2>${{ product.price }}</h2>
+        <p class="muted">{{ product.stock }} item{{ product.stock|pluralize }} available</p>
+
+        <div class="actions">
+            <form action="{% url 'shop:cart_add' product.id %}" method="post" class="inline-form gap">
+                {% csrf_token %}
+                <input class="qty" type="number" name="quantity" value="1" min="1" max="{{ product.stock }}">
+                <button class="btn primary" type="submit" {% if product.stock == 0 %}disabled{% endif %}>Add to cart</button>
+            </form>
+
+            {% if user.is_authenticated %}
+                {% if in_wishlist %}
+                    <form action="{% url 'shop:wishlist_remove' product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button class="btn" type="submit">Remove from wishlist</button>
+                    </form>
+                {% else %}
+                    <form action="{% url 'shop:wishlist_add' product.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="{{ request.path }}">
+                        <button class="btn" type="submit">Add to wishlist</button>
+                    </form>
+                {% endif %}
+            {% else %}
+                <a class="btn" href="{% url 'login' %}?next={{ request.path|urlencode }}">Login for wishlist</a>
+            {% endif %}
+        </div>
+    </section>
+</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends 'shop/base.html' %}
+{% block title %}Register | Simple Shop{% endblock %}
+{% block content %}
+<div class="auth-card card">
+    <h1>Create account</h1>
+    <form method="post" class="form-stack">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn primary wide" type="submit">Register</button>
+    </form>
+    <p class="muted">Already registered? <a href="{% url 'login' %}">Login</a></p>
+</div>
+{% endblock %}

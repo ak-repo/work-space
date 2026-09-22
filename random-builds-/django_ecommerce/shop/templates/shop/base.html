@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Simple Shop{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'shop/css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+    <div class="container nav-wrap">
+        <a class="brand" href="{% url 'shop:product_list' %}">Simple Shop</a>
+        <nav>
+            <a href="{% url 'shop:product_list' %}">Products</a>
+            <a href="{% url 'shop:cart_detail' %}">Cart ({{ cart_count }})</a>
+            {% if user.is_authenticated %}
+                <a href="{% url 'shop:wishlist' %}">Wishlist</a>
+                <a href="{% url 'shop:order_list' %}">Orders</a>
+                <span class="muted">Hi, {{ user.username }}</span>
+                <form class="inline-form" action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="link-button" type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+                <a href="{% url 'register' %}">Register</a>
+            {% endif %}
+        </nav>
+    </div>
+</header>
+
+<main class="container page">
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+</main>
+</body>
+</html>

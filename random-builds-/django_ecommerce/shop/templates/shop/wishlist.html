@@ -1,0 +1,26 @@
+{% extends 'shop/base.html' %}
+{% block title %}Wishlist | Simple Shop{% endblock %}
+{% block content %}
+<h1>Wishlist</h1>
+<div class="stack">
+    {% for item in items %}
+        <div class="card row-card">
+            <div class="grow">
+                <h3><a href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a></h3>
+                <p class="muted">${{ item.product.price }} · Stock {{ item.product.stock }}</p>
+            </div>
+            <form action="{% url 'shop:cart_add' item.product.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="quantity" value="1">
+                <button class="btn primary" type="submit" {% if item.product.stock == 0 %}disabled{% endif %}>Add to cart</button>
+            </form>
+            <form action="{% url 'shop:wishlist_remove' item.product.id %}" method="post">
+                {% csrf_token %}
+                <button class="btn danger" type="submit">Remove</button>
+            </form>
+        </div>
+    {% empty %}
+        <div class="card empty-state">Your wishlist is empty.</div>
+    {% endfor %}
+</div>
+{% endblock %}
