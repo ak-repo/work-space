@@ -1,0 +1,55 @@
+environment: dev
+
+server:
+  host: ""
+  port: "8080"
+  read_timeout: 15s
+  write_timeout: 60s
+  idle_timeout: 120s
+  shutdown_timeout: 10s
+
+database:
+  host: localhost
+  port: 5432
+  user: postgres
+  password: postgres
+  dbname: order_delivery
+  sslmode: disable
+  max_open_conns: 25
+  max_idle_conns: 10
+  conn_max_lifetime: 5m
+
+assignment:
+  max_search_radius_km: 50
+  distance_weight: 0.7
+  capacity_weight: 0.3
+  distance_smoothing: 0.1
+
+sse:
+  client_channel_buffer: 64
+
+defaults:
+  driver_capacity: 3
+  order_priority: 1
+
+observability:
+  service_name: order-delivery-engine
+  service_version: dev
+  log_level: info
+  log_format: text
+  gin_style_access: true
+  add_source: false
+  request_id_header: X-Request-ID
+  trust_incoming_request_id: true
+  log_query_string: true
+  log_user_agent: true
+  slow_request_threshold: 500ms
+  slow_query_threshold: 100ms
+  log_all_queries: false
+  log_query_args: false
+  max_sql_length: 512
+  max_path_length: 256
+  audit_enabled: true
+  log_sse_connect: true
+  log_sse_disconnect: true
+  warn_on_dropped_sse_event: true
