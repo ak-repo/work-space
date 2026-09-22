@@ -1,0 +1,35 @@
+[
+  {
+    "id": "rule_1",
+    "description": "10% off for orders over $100",
+    "condition": {
+      "min_order_value": 100
+    },
+    "discount_percentage": 10
+  },
+  {
+    "id": "rule_2",
+    "description": "$20 off for premium customers",
+    "condition": {
+      "customer_type": "premium"
+    },
+    "discount_fixed": 20
+  },
+  {
+    "id": "rule_3",
+    "description": "5% off for orders over $50",
+    "condition": {
+      "min_order_value": 50
+    },
+    "discount_percentage": 5
+  },
+  {
+    "id": "rule_4",
+    "description": "$10 off for regular customers on orders over $75",
+    "condition": {
+      "customer_type": "regular",
+      "min_order_value": 75
+    },
+    "discount_fixed": 10
+  }
+]
