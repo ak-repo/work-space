@@ -1,0 +1,2937 @@
+{
+  "items": [
+    {
+      "event": {
+        "id": "67f44db871720fe39aace3c13c9c2e44",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:43:23.730559927+05:30",
+        "created_at": "2026-09-29T05:13:23.730659822Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "973dbb91425388969da27671b577c913",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:43:32.918203604+05:30",
+        "created_at": "2026-09-29T05:13:32.918244998Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "a6022d61b2085ba883d707c60bb5d5e1",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:43:33.808867916+05:30",
+        "created_at": "2026-09-29T05:13:33.808879407Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "31a4924bec30028a4e2876038d5d12c9",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:43:40.035059028+05:30",
+        "created_at": "2026-09-29T05:13:40.035074507Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "b7fa9d60d1c9633271aa89543c1baa10",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:43:41.723844888+05:30",
+        "created_at": "2026-09-29T05:13:41.7238685Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "afc6abb5c0a65b21e60d27d1356c6060",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:44.982087744+05:30",
+        "created_at": "2026-09-29T05:14:44.982128232Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "dc022fa492e817465feccedab223eabb",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:45.708283706+05:30",
+        "created_at": "2026-09-29T05:14:45.708294616Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "9722001738c35fb5b2e1daef9dbaa37d",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:45.90914705+05:30",
+        "created_at": "2026-09-29T05:14:45.909158563Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "29ae25f9cf8fc3151a75970e23c4d793",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:46.096723102+05:30",
+        "created_at": "2026-09-29T05:14:46.096733452Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "8f13306058ea33403149e0019f26f7cc",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:46.296405054+05:30",
+        "created_at": "2026-09-29T05:14:46.296430007Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "044cfca57d0f779434cdee6dce6e8898",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:46.470340325+05:30",
+        "created_at": "2026-09-29T05:14:46.470363874Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "7023d6ee1e84954b1d19526c795b62c4",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:46.685073029+05:30",
+        "created_at": "2026-09-29T05:14:46.685084121Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "4f7c1768ee4cd54abfaff1e6d72796aa",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:46.876416888+05:30",
+        "created_at": "2026-09-29T05:14:46.876427823Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "63f385c378439bde23a7b4e034e44147",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:47.084576644+05:30",
+        "created_at": "2026-09-29T05:14:47.084590271Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "b323217cabdb6fa9f47abd4a53b9e686",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:47.29690505+05:30",
+        "created_at": "2026-09-29T05:14:47.296914481Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "a642cb60bb116fa57995016810a17a37",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:47.494588034+05:30",
+        "created_at": "2026-09-29T05:14:47.494600195Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "be7792dd58d2d06b66466204f4a3587d",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:47.688528898+05:30",
+        "created_at": "2026-09-29T05:14:47.688563045Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "4e70aeb57e105e14f42313dea6ba98ad",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:47.891664096+05:30",
+        "created_at": "2026-09-29T05:14:47.891685571Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "bae578e3959ecb97f821c3130b153895",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:48.106814583+05:30",
+        "created_at": "2026-09-29T05:14:48.106829961Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "44945cb434dc36c48da23a9036774216",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-29T10:44:48.31280515+05:30",
+        "created_at": "2026-09-29T05:14:48.312839907Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "a732d257dd38ca5bebcfd9d50fd955c6",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Suspicious login",
+        "state": {
+          "account": "demo",
+          "message": "Suspicious login and leaked token reported"
+        },
+        "occurred_at": "2026-09-30T11:44:39.317841908+05:30",
+        "created_at": "2026-09-30T06:14:39.317870437Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "security",
+            "confidence": 0.91,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.02,
+              "infrastructure": 0.03,
+              "security": 0.91,
+              "technical": 0.03
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "security_review",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.06,
+              "security_review": 0.81
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "security_review",
+        "reason_code": "security_category"
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "7779c3332a8cada972458f564649904e",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "impact": "many users",
+          "message": "Payment API unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:44:39.595920343+05:30",
+        "created_at": "2026-09-30T06:14:39.595936651Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "22230a4f29cd602838152696f4355c69",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Vague request",
+        "state": {
+          "message": "Something is not right, please help"
+        },
+        "occurred_at": "2026-09-30T11:44:39.875752312+05:30",
+        "created_at": "2026-09-30T06:14:39.875768917Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "general",
+            "confidence": 0.76,
+            "probabilities": {
+              "billing": 0.04,
+              "general": 0.76,
+              "infrastructure": 0.08,
+              "security": 0.05,
+              "technical": 0.07
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "human_review",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.81,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "general"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "0148702a429c965f724d8cf54418c67f",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "impact": "many users",
+          "message": "Payment API unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:44:40.154772621+05:30",
+        "created_at": "2026-09-30T06:14:40.154828481Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "dc011d8bccbf0812ead4b37967b0e434",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "impact": "many users",
+          "message": "Payment API unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:44:40.435044507+05:30",
+        "created_at": "2026-09-30T06:14:40.435062172Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "e3b3980a44b7585cd21c30a117249994",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Suspicious login",
+        "state": {
+          "account": "demo",
+          "message": "Suspicious login and leaked token reported"
+        },
+        "occurred_at": "2026-09-30T11:44:40.714516053+05:30",
+        "created_at": "2026-09-30T06:14:40.714527031Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "security",
+            "confidence": 0.91,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.02,
+              "infrastructure": 0.03,
+              "security": 0.91,
+              "technical": 0.03
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "security_review",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.06,
+              "security_review": 0.81
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "security_review",
+        "reason_code": "security_category"
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "3063313f16ae6228d3de944676a59712",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Suspicious login",
+        "state": {
+          "account": "demo",
+          "message": "Suspicious login and leaked token reported"
+        },
+        "occurred_at": "2026-09-30T11:44:40.992683331+05:30",
+        "created_at": "2026-09-30T06:14:40.992699778Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "security",
+            "confidence": 0.91,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.02,
+              "infrastructure": 0.03,
+              "security": 0.91,
+              "technical": 0.03
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "security_review",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.06,
+              "security_review": 0.81
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "security_review",
+        "reason_code": "security_category"
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "69529cc14793150d6f8e2db9e135ad97",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Duplicate charge",
+        "state": {
+          "message": "Customer reports duplicate subscription charge and asks for refund"
+        },
+        "occurred_at": "2026-09-30T11:44:41.272801016+05:30",
+        "created_at": "2026-09-30T06:14:41.272815941Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "billing",
+            "confidence": 0.9,
+            "probabilities": {
+              "billing": 0.9,
+              "general": 0.04,
+              "infrastructure": 0.02,
+              "security": 0.01,
+              "technical": 0.03
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "billing"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "9c0e8d7996200df4d474b8dd982312fb",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Duplicate charge",
+        "state": {
+          "message": "Customer reports duplicate subscription charge and asks for refund"
+        },
+        "occurred_at": "2026-09-30T11:44:41.55228522+05:30",
+        "created_at": "2026-09-30T06:14:41.552297701Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "billing",
+            "confidence": 0.9,
+            "probabilities": {
+              "billing": 0.9,
+              "general": 0.04,
+              "infrastructure": 0.02,
+              "security": 0.01,
+              "technical": 0.03
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "billing"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "11e4928f4a62966a0ccd5e230381f0fc",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "SDK integration failure",
+        "state": {
+          "message": "Customer SDK integration returns API error after upgrade"
+        },
+        "occurred_at": "2026-09-30T11:44:41.830591553+05:30",
+        "created_at": "2026-09-30T06:14:41.830603489Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "technical",
+            "confidence": 0.89,
+            "probabilities": {
+              "billing": 0.02,
+              "general": 0.04,
+              "infrastructure": 0.04,
+              "security": 0.01,
+              "technical": 0.89
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "technical"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "a99e8f6e07db2d948a45dc3e321c2b33",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "SDK integration failure",
+        "state": {
+          "message": "Customer SDK integration returns API error after upgrade"
+        },
+        "occurred_at": "2026-09-30T11:44:42.109520817+05:30",
+        "created_at": "2026-09-30T06:14:42.109530754Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "technical",
+            "confidence": 0.89,
+            "probabilities": {
+              "billing": 0.02,
+              "general": 0.04,
+              "infrastructure": 0.04,
+              "security": 0.01,
+              "technical": 0.89
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "technical"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "5c490f10f764e2a1330edf2c2c2ab8b0",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "impact": "many users",
+          "message": "Payment API unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:44:42.387187081+05:30",
+        "created_at": "2026-09-30T06:14:42.387201635Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "61dc22fb5b2efc5bce1fe98c25b5a364",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "impact": "many users",
+          "message": "Payment API unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:44:42.666691086+05:30",
+        "created_at": "2026-09-30T06:14:42.666714117Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "aeccbd31093abbc85886412faa089b50",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Vague request",
+        "state": {
+          "message": "Something is not right, please help"
+        },
+        "occurred_at": "2026-09-30T11:44:42.947075737+05:30",
+        "created_at": "2026-09-30T06:14:42.947088756Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "general",
+            "confidence": 0.76,
+            "probabilities": {
+              "billing": 0.04,
+              "general": 0.76,
+              "infrastructure": 0.08,
+              "security": 0.05,
+              "technical": 0.07
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "human_review",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.81,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "general"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "5fddcfe7e298b28da90a4920b053e9e6",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Vague request",
+        "state": {
+          "message": "Something is not right, please help"
+        },
+        "occurred_at": "2026-09-30T11:44:43.226186116+05:30",
+        "created_at": "2026-09-30T06:14:43.226200705Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "general",
+            "confidence": 0.76,
+            "probabilities": {
+              "billing": 0.04,
+              "general": 0.76,
+              "infrastructure": 0.08,
+              "security": 0.05,
+              "technical": 0.07
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "human_review",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.81,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "general"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "3f20d050b0230ce82f2e53a7a19f00ab",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "impact": "many users",
+          "message": "Payment API unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:44:43.506539551+05:30",
+        "created_at": "2026-09-30T06:14:43.506550153Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "ebe78fb5c6f65c7247ce94687e629888",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "SDK integration failure",
+        "state": {
+          "message": "Customer SDK integration returns API error after upgrade"
+        },
+        "occurred_at": "2026-09-30T11:44:43.784284501+05:30",
+        "created_at": "2026-09-30T06:14:43.784294159Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "technical",
+            "confidence": 0.89,
+            "probabilities": {
+              "billing": 0.02,
+              "general": 0.04,
+              "infrastructure": 0.04,
+              "security": 0.01,
+              "technical": 0.89
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "technical"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "a2d109a3da00393a7e46a1781e41ff45",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "SDK integration failure",
+        "state": {
+          "message": "Customer SDK integration returns API error after upgrade"
+        },
+        "occurred_at": "2026-09-30T11:44:44.061765962+05:30",
+        "created_at": "2026-09-30T06:14:44.061773567Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "technical",
+            "confidence": 0.89,
+            "probabilities": {
+              "billing": 0.02,
+              "general": 0.04,
+              "infrastructure": 0.04,
+              "security": 0.01,
+              "technical": 0.89
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "technical"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "b9b19879fe196ae0b0154aa9ea87aa7f",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "SDK integration failure",
+        "state": {
+          "message": "Customer SDK integration returns API error after upgrade"
+        },
+        "occurred_at": "2026-09-30T11:44:44.339488761+05:30",
+        "created_at": "2026-09-30T06:14:44.339495858Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "technical",
+            "confidence": 0.89,
+            "probabilities": {
+              "billing": 0.02,
+              "general": 0.04,
+              "infrastructure": 0.04,
+              "security": 0.01,
+              "technical": 0.89
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "technical"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "7171822930ad2a1dcb915eb6c43d65d8",
+        "source": "simulator",
+        "event_type": "demo",
+        "title": "SDK integration failure",
+        "state": {
+          "message": "Customer SDK integration returns API error after upgrade"
+        },
+        "occurred_at": "2026-09-30T11:44:44.617088136+05:30",
+        "created_at": "2026-09-30T06:14:44.617095799Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "technical",
+            "confidence": 0.89,
+            "probabilities": {
+              "billing": 0.02,
+              "general": 0.04,
+              "infrastructure": 0.04,
+              "security": 0.01,
+              "technical": 0.89
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.18
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "route_support",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.06,
+              "route_support": 0.81,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 1,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "route_normal",
+        "reason_code": "confident_standard_route",
+        "details": {
+          "category": "technical"
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "7444da09853b6146f84f42ce4a7e1044",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:45:32.215265266+05:30",
+        "created_at": "2026-09-30T06:15:32.215330737Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "950f5510eea41831e1aa4624fb81a452",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:45:38.095767598+05:30",
+        "created_at": "2026-09-30T06:15:38.095788945Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    },
+    {
+      "event": {
+        "id": "a002594ab11696ba899a4721b35a2574",
+        "source": "dashboard",
+        "event_type": "demo",
+        "title": "Payment API outage",
+        "state": {
+          "error_rate": 0.42,
+          "message": "Payment API is unavailable for many users",
+          "service": "payments"
+        },
+        "occurred_at": "2026-09-30T11:45:38.913632552+05:30",
+        "created_at": "2026-09-30T06:15:38.913643791Z"
+      },
+      "decision": {
+        "provider": "jev-mock",
+        "model": "mock-jev",
+        "answers": {
+          "category": {
+            "type": "choice",
+            "choice": "infrastructure",
+            "confidence": 0.86,
+            "probabilities": {
+              "billing": 0.01,
+              "general": 0.03,
+              "infrastructure": 0.86,
+              "security": 0.02,
+              "technical": 0.08
+            }
+          },
+          "needs_escalation": {
+            "type": "noul",
+            "probability": 0.94
+          },
+          "next_action": {
+            "type": "choice",
+            "choice": "page_engineer",
+            "confidence": 0.84,
+            "probabilities": {
+              "human_review": 0.04,
+              "observe": 0.03,
+              "page_engineer": 0.81,
+              "route_support": 0.06,
+              "security_review": 0.04
+            }
+          },
+          "severity": {
+            "type": "score",
+            "score": 2.8,
+            "confidence": 0.88,
+            "probabilities": {
+              "0": 0.03,
+              "1": 0.14,
+              "2": 0.39,
+              "3": 0.44
+            }
+          }
+        },
+        "latency_ms": 25
+      },
+      "policy": {
+        "action": "page_engineer",
+        "reason_code": "high_escalation_probability",
+        "details": {
+          "probability": 0.94
+        }
+      },
+      "status": "ok"
+    }
+  ]
+}

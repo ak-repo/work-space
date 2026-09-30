@@ -1,0 +1,13 @@
+services:
+  app:
+    image: golang:1.23
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: go run ./cmd/server
+    environment:
+      HTTP_ADDR: :8080
+      DATA_FILE: /app/data/state.json
+      JEV_MODE: mock
+    ports:
+      - "8080:8080"
